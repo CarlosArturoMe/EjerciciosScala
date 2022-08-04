@@ -3,32 +3,38 @@ package ejercicios.readme
 import scala.math.{pow, sqrt}
 
 /*
-###Ejercicio 9:
+###Ejercicio 8:
 
-Se requiere implementar una función que resuelva una ecuación de segundo grado, se deberán poder calcular cuando se suma
-y cuando se resta, recibiendo como argumentos el valor cuadrático, el lineal y el constante.
-Se deberá utilizar una función de orden superior.
-La expresión if está prohibida en este ejercicio.
+Se requiere implementar una función que calcule el peso de una persona dependiendo en qué planeta se encuentre.
+Recordando que la fórmula es la siguiente
+P = m x g
+Donde:
+P = peso, m = masa, g = aceleración gravitacional
+La aceleración gravitacional varía dependiendo el planeta, se deberá calcular para los siguientes:
 
-x = (-b +/- √(b^2 - 4ac) ) / (2a)
+Planeta     g
+Mercurio    3.70
+Tierra      9.81
+Saturno     11.67
 
-Para obtener los valores de x de la siguiente ecuación: x² - 5x + 6 = 0
-Se debe ejecutar algo parecido a lo siguiente:
+Utilizando funciones de orden superior obten el peso en cada planeta, solo puedes implementar una sola función
+para resolver el problema
+def calcularPeso ...
 
-ecuacionSegundoGrado(x1, 1, -5, 6) => 3.0 (cuando es suma)
-ecuacionSegundoGrado(x2, 1, -5, 6) => 2.0 (cuando es resta)
+val pesoMercurio = mercurio (70)
+val pesoTierra = tierra (70)
+val pesoSaturno = saturno (70)
  */
 object Ej8 extends App {
 
-  def ecuacionSegundoGrado(operacion:String, a:Int, b:Int, c:Int):Double = {
-    var resultado:Double = 0
-    operacion match {
-      case "x1" => resultado = (-b + sqrt(pow(b,2) - 4 * a *c)) / 2 * a
-      case "x2" => resultado = (-b - sqrt(pow(b,2) - 4 * a *c)) / 2 * a
-    }
-    resultado
-  }
+  val calcularPeso = (x: Int) => x * 2
+  val acel = Map("Mercurio" -> 3.70, "Tierra" -> 9.81, "Saturno" -> 11.67)
+  def calcularPeso (peso: Double, masa:Double)(planeta: String) = peso * masa * acel(planeta)
 
-  println(ecuacionSegundoGrado("x1",1,-5,6))
-  println(ecuacionSegundoGrado("x2",1,-5,6))
+    val pesoMercurio = calcularPeso(5,5)("Mercurio")
+    println(pesoMercurio)
+  val pesoTierra= calcularPeso(5,5)("Tierra")
+  println(pesoTierra)
+  val pesoSaturno= calcularPeso(5,5)("Saturno")
+  println(pesoSaturno)
 }
